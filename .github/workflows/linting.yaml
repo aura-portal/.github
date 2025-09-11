@@ -2,8 +2,6 @@
 name: Linting
 on:
   workflow_call: null
-permissions:
-  contents: read
 jobs:
   linting:
     name: Linting
