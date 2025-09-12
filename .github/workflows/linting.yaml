@@ -1,10 +1,5 @@
 ---
 name: Linting
-permissions:
-  contents: read
-  packages: read
-  statuses: write
-  checks: write
 on:
   workflow_call: null
 jobs:

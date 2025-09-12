@@ -1,8 +1,5 @@
 ---
 name: Docker release
-permissions:
-  contents: read
-  packages: write
 on:
   workflow_call:
     inputs:
