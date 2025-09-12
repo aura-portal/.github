@@ -3,6 +3,11 @@ name: Docker release
 on:
   workflow_call:
     inputs:
+      context:
+        description: Build context
+        type: string
+        required: false
+        default: ./app
       major:
         description: Major version number
         type: number
@@ -35,6 +40,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: ${{ inputs.context }}
           push: true
           tags: |
             ghcr.io/${{ github.repository }}:v${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}
