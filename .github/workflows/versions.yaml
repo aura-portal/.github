@@ -1,0 +1,38 @@
+---
+name: Versions
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: Tag name
+        type: string
+        required: true
+    outputs:
+      major:
+        description: Major version number
+        value: ${{ jobs.versions.outputs.major }}
+      minor:
+        description: Minor version number
+        value: ${{ jobs.versions.outputs.minor }}
+      patch:
+        description: Patch version number
+        value: ${{ jobs.versions.outputs.patch }}
+jobs:
+  versions:
+    name: Versions
+    runs-on: ubuntu-latest
+    outputs:
+      major: ${{ steps.set-outputs.outputs.major }}
+      minor: ${{ steps.set-outputs.outputs.minor }}
+      patch: ${{ steps.set-outputs.outputs.patch }}
+    steps:
+      - uses: applicreation/versions-action@v2
+        id: versions
+        with:
+          tag: ${{ inputs.tag }}
+      - name: Set outputs
+        id: set-outputs
+        run: |
+          echo "major=${{ steps.versions.outputs.major }}" >> $GITHUB_OUTPUT
+          echo "minor=${{ steps.versions.outputs.minor }}" >> $GITHUB_OUTPUT
+          echo "patch=${{ steps.versions.outputs.patch }}" >> $GITHUB_OUTPUT
