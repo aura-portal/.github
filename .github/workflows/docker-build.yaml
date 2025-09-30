@@ -7,7 +7,7 @@ on:
         description: Build context
         type: string
         required: false
-        default: ./app
+        default: .
 jobs:
   docker-build:
     name: Build

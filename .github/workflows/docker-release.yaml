@@ -7,7 +7,7 @@ on:
         description: Build context
         type: string
         required: false
-        default: ./app
+        default: .
       major:
         description: Major version number
         type: string
